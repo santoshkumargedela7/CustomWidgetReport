@@ -1,5 +1,6 @@
 package com.widget.CustomWidgetReport;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
@@ -15,6 +16,10 @@ import org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache
 @EnableCaching(mode = AdviceMode.ASPECTJ)
 public class CustomWidgetReportApplication {
 
+	@Bean
+	public ModelMapper modelMapper(){
+		return new ModelMapper();
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(CustomWidgetReportApplication.class, args);
 	}

@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService{
 		
 		try {
 			User savedUser = userRepository.save(user);
+			
 			return savedUser;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -42,7 +43,14 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User findById(Integer userId) {
 		// TODO Auto-generated method stub
-		return userRepository.findById(userId).get();
+		
+		try {
+			User user = userRepository.findById(userId).get();
+			return user;
+		} catch (Exception e) {
+			
+		}
+		return null;
 	}
 
 	@Override
@@ -57,6 +65,7 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findByUserNameIgnoreCaseAndStatusIgnoreCase(userName, status);
 	}
 
+	
 	
 	
 	

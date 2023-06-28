@@ -16,6 +16,8 @@ public interface RoleService {
 	
 	boolean existsByRoleNameIgnoreCase(String roleName);
 	
-	List<Role> findAll();
+	
+
+	List<Role> getAllRoles();
 	
 }

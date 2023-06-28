@@ -12,11 +12,11 @@ import com.widget.CustomWidgetReport.repository.RoleRepository;
 
 @Service
 @Transactional
-public class RoleServiceImpl implements com.widget.CustomWidgetReport.service.RoleService{
-	
+public class RoleServiceImpl implements com.widget.CustomWidgetReport.service.RoleService {
+
 	@Autowired
 	private RoleRepository roleRepository;
-	
+
 	@Override
 	public List<Role> getRolesByStatus(String status) {
 		return roleRepository.findAllByStatusIgnoreCase(status);
@@ -25,7 +25,7 @@ public class RoleServiceImpl implements com.widget.CustomWidgetReport.service.Ro
 	@Override
 	public void deleteById(Integer roleId) {
 		roleRepository.deleteById(roleId);
-		
+
 	}
 
 	@Override
@@ -44,9 +44,9 @@ public class RoleServiceImpl implements com.widget.CustomWidgetReport.service.Ro
 	}
 
 	@Override
-	public List<Role> findAll() {
+	public List<Role> getAllRoles() {
+		// TODO Auto-generated method stub
 		return roleRepository.findAll();
 	}
-
 
 }

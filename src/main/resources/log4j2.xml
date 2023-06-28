@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Configuration status="DEBUG" monitorInterval="30">
+
+	<Properties>
+        <Property name="basePath">E:/DewaReport/DewaReportLog</Property>
+        <Property name="basePath1">E:/DewaReport/FeaturesLog</Property>
+        <Property name="basePath2">E:/DewaReport/LoginUserLog</Property>
+        <Property name="basePath3">E:/DewaReport/RoleDetailsLog</Property>
+        <Property name="basePath4">E:/DewaReport/UserDetailsLog</Property>
+        <Property name="size">500MB</Property>
+    </Properties>
+    
+	<Appenders>
+	
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] - %msg%n" />
+		</Console>
+		
+		<RollingFile name="RoutingAppender" append="false"
+			fileName="${basePath}/DewaReportLog.log" filePattern="${basePath}/$${date:yyyy-MM}/middlewarelog_%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${size}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20">
+				<Delete basePath="${basePath}" maxDepth="1">
+					<!-- Delete all files older than 30 days -->
+					<IfLastModified age="30d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+		
+		<RollingFile name="RoutingAppender1" append="false"
+			fileName="${basePath1}/FeaturesLog.log" filePattern="${basePath1}/$${date:yyyy-MM}/pomreverselog_%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${size}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20">
+				<Delete basePath="${basePath1}" maxDepth="1">
+					<!-- Delete all files older than 30 days -->
+					<IfLastModified age="30d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+		
+		<RollingFile name="RoutingAppender2" append="false"
+			fileName="${basePath2}/LoginUserLog.log" filePattern="${basePath2}/$${date:yyyy-MM}/acmschdulerlog_%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${size}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20">
+				<Delete basePath="${basePath2}" maxDepth="1">
+					<!-- Delete all files older than 30 days -->
+					<IfLastModified age="30d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+		
+		<RollingFile name="RoutingAppender3" append="false"
+			fileName="${basePath3}/RoleDetailsLog.log" filePattern="${basePath3}/$${date:yyyy-MM}/crmpopuplog_%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${size}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20">
+				<Delete basePath="${basePath3}" maxDepth="1">
+					<!-- Delete all files older than 30 days -->
+					<IfLastModified age="30d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+		
+		<RollingFile name="RoutingAppender4" append="false"
+			fileName="${basePath4}/UserDetailsLog.log" filePattern="${basePath4}/$${date:yyyy-MM}/tcpcalltaglog_%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${size}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20">
+				<Delete basePath="${basePath4}" maxDepth="1">
+					<!-- Delete all files older than 30 days -->
+					<IfLastModified age="30d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>	
+	</Appenders>
+	
+	<Loggers>	
+		<Logger name="DewaReportController" level="debug" additivity="false">
+		    <Appender-Ref ref="RoutingAppender"/>			
+			<Appender-Ref ref="Console"/>			
+		</Logger>
+		<Logger name="FeatureController" level="debug" additivity="false">
+			<AppenderRef ref="RoutingAppender1" />
+			<AppenderRef ref="Console" />
+		</Logger>	
+		<Logger name="LoginController" level="debug" additivity="false">
+			<AppenderRef ref="RoutingAppender2" />
+			<AppenderRef ref="Console" />
+		</Logger>	
+		<Logger name="RoleController" level="debug" additivity="false">
+			<AppenderRef ref="RoutingAppender3" />
+			<AppenderRef ref="Console" />
+		</Logger>	
+		<Logger name="UserController" level="debug" additivity="false">
+			<AppenderRef ref="RoutingAppender4" />
+			<AppenderRef ref="Console" />
+		</Logger>	
+		<Root level="error" additivity="false">
+			<AppenderRef ref="Console"/>			
+		</Root>
+	</Loggers>
+</Configuration>
